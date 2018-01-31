@@ -156,7 +156,14 @@ class WorkerTile {
 
                 for (const key in buckets) {
                     const bucket = buckets[key];
-                    if (bucket instanceof SymbolBucket) {
+
+                    // The original code was:
+                    //
+                    //    bucket instance of SymbolBucket
+                    //
+                    // However, this wrongly returned false in some cases.
+                    // The following check turns out to be reliable.
+                    if (bucket.hasOwnProperty('collisionBoxArray')) {
                         recalculateLayers(bucket.layers, this.zoom);
                         performSymbolLayout(bucket, glyphMap, glyphAtlas.positions, imageMap, imageAtlas.positions, this.showCollisionBoxes);
                     }

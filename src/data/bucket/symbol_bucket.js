@@ -406,7 +406,7 @@ class SymbolBucket implements Bucket {
 
 
     isEmpty() {
-        return this.symbolInstances.length === 0;
+        return !this.symbolInstances || this.symbolInstances.length === 0;
     }
 
     upload(context: Context) {

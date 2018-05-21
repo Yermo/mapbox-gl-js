@@ -17,7 +17,7 @@ import type Tile from './tile';
 import type {Callback} from '../types/callback';
 
 class VectorTileSource extends Evented implements Source {
-    type: 'vector';
+    type: string;
     id: string;
     minzoom: number;
     maxzoom: number;
